@@ -13,15 +13,16 @@ import librosa
 # the length of ach segment is 'frame_length' and in seconds.
 # The file could be .wav or any video format.
 
-def audio_search(
-    file, sample_rate=44100, block_length=3, n_mels=128, hop_length=512
+def audio_search_classifier(
+    file, sample_rate=44100, block_length=3, n_mels=128, hop_length=512,
+    block_hop_length_in_sec=1
 ):
 
     # Extracting the name of the file.
     name = file.split('/')[-1].split('.')[0]
     n_frames = int(block_length * sample_rate / hop_length) + 1
 
-    # Frame-length in number of samples.
+    # Block-length in number of samples.
     win_length = sample_rate * block_length
     if file.endswith('wav'):
         audio_series, _ = librosa.load(file, sr=sample_rate)
@@ -40,12 +41,20 @@ def audio_search(
         'constant', constant_values=(0, 0)
     )
 
+    block_hop_length = block_hop_length_in_sec * sample_rate
+
+    number_of_blocks = int(
+        len(audio_series) / (block_hop_length)
+    ) - 1
+
     # Building the input array.
     df_tensor = np.zeros(
-        shape=(int(len(audio_series) / win_length), 1, n_mels, n_frames)
+        shape=(number_of_blocks, 1, n_mels, n_frames)
     )
-    for idx in range(int(len(audio_series) / win_length)):
-        sub_serie = np.array(audio_series[idx: idx+win_length])
+    for idx in range(number_of_blocks):
+        sub_serie = np.array(
+            audio_series[idx*block_hop_length: (idx*block_hop_length)+win_length]
+        )
         df_tensor[idx] = np.array(
             [wave_to_array(sub_serie)]
         )
@@ -95,4 +104,4 @@ def detector_frame(
 if __name__ == "__main__":
     PATH = str((Path(__file__).parent).resolve())
     frame_detections = detector_frame(PATH+'/detect_samples')
-    video_classification = audio_search('~/path_to_video/audio_file')
+    video_classification = audio_search_classifier('~/path_to_video/audiofile')

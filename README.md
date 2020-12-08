@@ -37,8 +37,8 @@
      it will be zero-paded and if it is longer a 3 second slice will be taken
      from the sample. The argument "block_length" coresponds to the fixed length
      of single shot.
-     The second function "audio_search" takes in an audio or video file and returns
-     detections for 3 second single shots.
+     The second function "audio_search_classifier" takes in an audio or video file
+     and returns detections for 3 second single shots.
 
   6- Some examples have been added to "data", "data_unlabelled" and "detect_samples"
      directories as a reference of how it must be done. 
