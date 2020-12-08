@@ -35,4 +35,6 @@ Instructions:
      of single shot.
      The second function "audio_search" takes in an audio or video file and returns
      detections for 3 second single shots.
-     
+   - Some examples have been added to "data", "data_unlabelled" and "detect_samples"
+     directories as a reference of how it must be done. 
+  
