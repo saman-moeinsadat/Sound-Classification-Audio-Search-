@@ -14,24 +14,24 @@
 
 ## Instructions:
 
-  1- Copy the labelled waves into "data" directory in class-directory format. i.e. 
+  1. Copy the labelled waves into "data" directory in class-directory format. i.e. 
      each directory is named after one of the classes and contains all instances
      of that class.
 
-  2- Copy all un-labelled waves into "data_unlabelled" directory.
+  1. Copy all un-labelled waves into "data_unlabelled" directory.
 
-  3- Run the "util.py" script in order to build the Tensor datasets. It augments
+  1. Run the "util.py" script in order to build the Tensor datasets. It augments
      data from "data" directory(contains an argument class_number that controls 
      the minimun number of instances in each class). Then it builds the labelled
      Tensor dataset and in the end it also builds the unlabelled tensor from
      "data_unlabelled" directory.
 
-  4- Run the "train.py" script. It first trains the classifier through supervised
+  1. Run the "train.py" script. It first trains the classifier through supervised
      learning, saves the best weights and then load these weights and trains the
      model again through semi-supervised learning. The 99.25 % accuracy was 
      achieved in the end of training trials.
 
-  5- The "detect.py" script contains two functions: The "detector_frame" function that
+  1. The "detect.py" script contains two functions: The "detector_frame" function that
      classifies single shots waves in "detect_samples" directory. It must be noted
      that all single shots are fixed with equal 3 seconds length so if it is shorter
      it will be zero-paded and if it is longer a 3 second slice will be taken
@@ -40,6 +40,6 @@
      The second function "audio_search_classifier" takes in an audio or video file
      and returns detections for 3 second single shots.
 
-  6- Some examples have been added to "data", "data_unlabelled" and "detect_samples"
+  1. Some examples have been added to "data", "data_unlabelled" and "detect_samples"
      directories as a reference of how it must be done. 
   

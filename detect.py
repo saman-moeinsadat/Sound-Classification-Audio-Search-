@@ -53,7 +53,9 @@ def audio_search_classifier(
     )
     for idx in range(number_of_blocks):
         sub_serie = np.array(
-            audio_series[idx*block_hop_length: (idx*block_hop_length)+win_length]
+            audio_series[
+                idx*block_hop_length: (idx*block_hop_length)+win_length
+            ]
         )
         df_tensor[idx] = np.array(
             [wave_to_array(sub_serie)]
